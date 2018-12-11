@@ -36,14 +36,16 @@ transform = BaseTransform(net.size, (104/256.0, 117/256.0, 123/256.0))
 
 
 # Doing some object detections on a video
-# reader = imageio.get_reader('funny_dog.mp4')
+# reader = imageio.get_reader('epic-horses.mp4')
 reader = imageio.get_reader('IMG_5952_2.mp4')
 fps = reader.get_meta_data()['fps']
 writer = imageio.get_writer('output.mp4', fps=fps, macro_block_size=None)
 for i, frame in enumerate(reader):
-    if i % 5 != 0:
-        continue
-    frame = cv2.resize(frame, (640, 360))
+    # # skip 5 frames to speed the detection
+    # if i % 5 != 0:
+    #     continue
+    # # resize frame to speed the process
+    # frame = cv2.resize(frame, (640, 360))
     frame = detect(frame, net.eval(), transform)
     writer.append_data(frame)
     print(i)
