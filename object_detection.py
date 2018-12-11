@@ -28,7 +28,7 @@ def detect(frame, net, transform):
 
 # Creating the SSD neural network
 net = build_ssd('test')
-net.load_state_dict(torch.load('ssd300_mAP_77.43_v2.pth', map_location={'cuda:0': 'cpu'}))
+net.load_state_dict(torch.load('weights/ssd300_mAP_77.43_v2.pth', map_location={'cuda:0': 'cpu'}))
 
 
 # Create the transformation
@@ -37,9 +37,9 @@ transform = BaseTransform(net.size, (104/256.0, 117/256.0, 123/256.0))
 
 # Doing some object detections on a video
 # reader = imageio.get_reader('epic-horses.mp4')
-reader = imageio.get_reader('IMG_5952_2.mp4')
+reader = imageio.get_reader('videos/IMG_5952_2.mp4')
 fps = reader.get_meta_data()['fps']
-writer = imageio.get_writer('output.mp4', fps=fps, macro_block_size=None)
+writer = imageio.get_writer('videos/output.mp4', fps=fps, macro_block_size=None)
 for i, frame in enumerate(reader):
     # # skip 5 frames to speed the detection
     # if i % 5 != 0:

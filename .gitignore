@@ -3,11 +3,11 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# testing files
-*.mp4
-
 # C extensions
 *.so
+
+# testing files
+*.mp4
 
 # Distribution / packaging
 .Python
